@@ -1,12 +1,28 @@
-import { KeyboardAvoidingView, StyleSheet, Text, View, TextInput, Platform, TouchableOpacity } from 'react-native';
+import React, {useState} from 'react'
+import { Keyboard, KeyboardAvoidingView, StyleSheet, Text, View, TextInput, Platform, TouchableOpacity } from 'react-native';
 import Task from "./components/tasks";
 
 
 // UI adapted from Made With Matt :)
 
 export default function App() {
-  return (
 
+  const [task, setTask] = useState<string | null>(); // Specify that the type is a string or null
+  const [tasks, setTasks] = useState<any[]>([]); 
+
+  const handleAddTask = () => {
+    setTasks([...tasks, task]);
+    setTask(''); // Reset task to ''
+    Keyboard.dismiss(); 
+  }
+
+  const completeTask = (index: number) => {
+      let itemsCopy = [...tasks]; 
+      itemsCopy.splice(index, 1); // Remove the item at index from array
+      setTasks(itemsCopy) // Update Task state
+  }
+  
+  return (
 
     <View style={styles.container}>
     
@@ -16,8 +32,15 @@ export default function App() {
           <Text style = {styles.sectionTitle}> Todo: </Text>
 
           <View style = {styles.items}>
-            <Task text = {'Task 1'}/>
-            <Task text = {'Task 2'}/>
+            {
+              tasks.map((item, index) => {
+                return (
+                  <TouchableOpacity key={index} onPress={() => completeTask(index)}>
+                    <Task text = {item} />
+                  </TouchableOpacity>
+                )
+              })
+            }
           </View>
 
         </View>
@@ -28,8 +51,8 @@ export default function App() {
         style={styles.writeTaskWrapper}
         >
 
-          <TextInput style = {styles.input} placeholder = {'Write a Todo'}/>
-          <TouchableOpacity>
+          <TextInput value={task || ''} style = {styles.input} placeholder = {'Write a Todo'} onChangeText= {text => setTask(text)}/>
+          <TouchableOpacity onPress = {() => handleAddTask()}>
             <View style = {styles.addWrapper}>
               <Text style = {styles.addText}>+</Text>
             </View>
@@ -37,9 +60,6 @@ export default function App() {
         </KeyboardAvoidingView>
 
     </View>
-
-    
-
   );
 }
 
