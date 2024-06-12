@@ -2,12 +2,22 @@ import React, {useState} from 'react'
 import {  StyleSheet, View} from 'react-native';
 import TaskList from "./components/TaskList"
 import TaskInput from './components/TaskInput';
+import Search from './components/Search'; 
 
 
 // UI design adapted from Made With Matt :)
 
 const App: React.FC = () => {
+
+  // State for tasks
   const [tasks, setTasks] = useState<string[]>([]);
+
+  // State for search
+  const [searchText, setSearchText] = useState(""); 
+
+  const handleSearchTask = (text: string) => {
+    setSearchText(text); 
+  }
 
   const handleAddTask = (task: string) => {
     setTasks([...tasks, task]);
@@ -21,7 +31,11 @@ const App: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <TaskList tasks={tasks} onCompleteTask={completeTask} />
+      <Search onSearchTask={handleSearchTask}/>
+      <TaskList 
+        tasks={tasks.filter(task => task.includes(searchText))} 
+        onCompleteTask={completeTask} 
+      />
       <TaskInput onAddTask={handleAddTask} />
     </View>
   );

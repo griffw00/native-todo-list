@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, Text, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 
-interface TaskInputProps {
+type TaskInputProps = {
   onAddTask: (task: string) => void;
 }
+// type TaskInputProps = (task: string) => void;
 
-const TaskInput: React.FC<TaskInputProps> = ({ onAddTask }) => {
+const TaskInput: React.FC<TaskInputProps> = ({onAddTask}) => {
   const [task, setTask] = useState('');
 
   const handleAddTask = () => {

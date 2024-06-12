@@ -32,7 +32,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onCompleteTask }) => {
         marginTop: 30,
       },
       taskWrapper: {
-        paddingTop: 80,
+        paddingTop: 60,
         paddingHorizontal: 20,
       },
   })
