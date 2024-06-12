@@ -5,6 +5,8 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 // Define a type for taskProps
 type taskProps = {
     text: string;
+    onCompleteTask: (index: number) => void;
+    index: number;
   };
 
 
@@ -16,7 +18,9 @@ const Task = (props: taskProps) => {
                 <View style= {styles.square}></View>
                 <Text style = {styles.text}>{props.text}</Text>
             </View>
-            <View style = {styles.circular}></View>
+            <TouchableOpacity key={props.index} onPress={() => props.onCompleteTask(props.index)}>
+                <View style = {styles.circular}></View>
+            </TouchableOpacity>
         </View>
     ); 
 }

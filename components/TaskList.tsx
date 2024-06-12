@@ -14,9 +14,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onCompleteTask }) => {
         <Text style={styles.sectionTitle}>Todo:</Text>
         <View style={styles.items}>
           {tasks.map((item, index) => (
-            <TouchableOpacity key={index} onPress={() => onCompleteTask(index)}>
-              <Task text={item} />
-            </TouchableOpacity>
+              <Task text={item} onCompleteTask={onCompleteTask} index = {index}/>
           ))}
         </View>
       </View>

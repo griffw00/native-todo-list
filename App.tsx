@@ -20,7 +20,7 @@ const App: React.FC = () => {
   }
 
   const handleAddTask = (task: string) => {
-    setTasks([...tasks, task]);
+    setTasks([...tasks, task]);  
   };
 
   const completeTask = (index: number) => {

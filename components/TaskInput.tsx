@@ -10,8 +10,10 @@ const TaskInput: React.FC<TaskInputProps> = ({onAddTask}) => {
   const [task, setTask] = useState('');
 
   const handleAddTask = () => {
-    onAddTask(task);
-    setTask('');
+    if (task.trim().length > 0) {
+      onAddTask(task);
+      setTask('');
+    }
   };
 
   return (
