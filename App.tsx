@@ -19,11 +19,23 @@ const App: React.FC = () => {
     setSearchText(text); 
   }
 
+  // This function will edit the tasks state
+  const handleEditTask = (newText: string, index: number) => {
+    const editedTasks = [...tasks];
+
+    // Update the task at the given index
+    editedTasks[index] = newText;
+
+    // Update tasks state
+    setTasks(editedTasks); 
+
+  }
+
   const handleAddTask = (task: string) => {
     setTasks([...tasks, task]);  
   };
 
-  const completeTask = (index: number) => {
+  const handleCompleteTask = (index: number) => {
     const itemsCopy = [...tasks];
     itemsCopy.splice(index, 1);
     setTasks(itemsCopy);
@@ -34,7 +46,8 @@ const App: React.FC = () => {
       <Search onSearchTask={handleSearchTask}/>
       <TaskList 
         tasks={tasks.filter(task => task.includes(searchText))} 
-        onCompleteTask={completeTask} 
+        onCompleteTask={handleCompleteTask} 
+        onEditTask = {handleEditTask}
       />
       <TaskInput onAddTask={handleAddTask} />
     </View>

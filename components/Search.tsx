@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import react from 'react';
+import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, KeyboardAvoidingView, TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
  
@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
     },
     text: {
         alignItems: "center", 
-        maxWidth: '80%',
+        maxWidth: "100%",
+        flex: 1,
         marginLeft: 10, 
     },
     searchIcon: {
