@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, KeyboardAvoidingView, TextInput} from 'react-native';
+import { Text, View, StyleSheet, KeyboardAvoidingView, TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
  
 
@@ -25,7 +25,7 @@ const Search: React.FC<SearchProps> = ({ onSearchTask}) => {
                 <TextInput 
                     style = {styles.text}
                     value={text}
-                    placeholder="Filter ToDo..."
+                    placeholder="Filter Todo..."
                     onChangeText={handleSearchTask}
                 />  
              </View> 

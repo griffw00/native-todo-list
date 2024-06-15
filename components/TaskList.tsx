@@ -1,6 +1,6 @@
 import React from 'react'
 import {useState} from 'react'
-import { Text, View, TouchableOpacity, StyleSheet} from 'react-native'; 
+import { Text, View, ScrollView, StyleSheet} from 'react-native'; 
 import Task from './Task';
 
 
@@ -21,17 +21,19 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onCompleteTask, onEditTask }
     return (
       <View style = {styles.taskWrapper}>
         <Text style={styles.sectionTitle}>Todo:</Text>
-        <View style={styles.items}>
-          {tasks.map((item, index) => (
-              <Task 
-                text={item} 
-                onEditTask={onEditTask} 
-                onCompleteTask={onCompleteTask} 
-                index = {index}
-                key = {index}
-                />
-          ))}
-        </View>
+        <ScrollView>
+          <View style={styles.items}>
+            {tasks.map((item, index) => (
+                <Task 
+                  text={item} 
+                  onEditTask={onEditTask} 
+                  onCompleteTask={onCompleteTask} 
+                  index = {index}
+                  key = {index}
+                  />
+            ))}
+          </View>
+        </ScrollView>
       </View>
     );
   };
@@ -45,6 +47,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onCompleteTask, onEditTask }
         marginTop: 30,
       },
       taskWrapper: {
+        flex: 1,
         paddingTop: 60,
         paddingHorizontal: 20,
       },

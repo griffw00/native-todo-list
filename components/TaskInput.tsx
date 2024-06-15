@@ -48,8 +48,9 @@ const styles = StyleSheet.create({
     
       },
       writeTaskWrapper: {
-        position: "absolute",
-        bottom: 60, // Bottom of the screen
+        position: "relative",
+        bottom: 25,
+        paddingTop: 25,
         width: "100%",
         flexDirection: "row",
         justifyContent: "space-around",
